@@ -15,12 +15,31 @@ This repository implements data cleaning and preprocessing pipelines using panda
 
 ## Installation
 
+Install directly from GitHub (clone the repo, then install in editable mode so
+edits to the source are reflected immediately):
+
 ```bash
+# 1. Clone the repo
+git clone https://github.com/jameslam-stack/data-cleaning-pipeline.git
+cd data-cleaning-pipeline
+
+# 2. Install (editable mode — no PyPI required)
 pip install -e .
 
-# With all optional dependencies
-pip install -e ".[polars,spark,dev]"
+# 3. (Optional) Install optional dependencies
+pip install polars pyspark
 ```
+
+> **Note:** This package is not on PyPI. Use the GitHub install above.
+> Editable mode (`-e .`) means changes to the source files take effect without
+> reinstalling — ideal for learning and development.
+
+### Requirements
+
+- Python 3.8+
+- `pandas` and `numpy` (installed automatically)
+- `polars` (optional, for the Polars pipeline)
+- `pyspark` (optional, for the PySpark pipeline)
 
 ## Quick Start
 

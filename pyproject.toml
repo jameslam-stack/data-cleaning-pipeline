@@ -42,8 +42,13 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/jameslam/data-cleaning-pipeline"
-Repository = "https://github.com/jameslam/data-cleaning-pipeline"
+Homepage = "https://github.com/jameslam-stack/data-cleaning-pipeline"
+Repository = "https://github.com/jameslam-stack/data-cleaning-pipeline"
+Documentation = "https://github.com/jameslam-stack/data-cleaning-pipeline#readme"
+Issues = "https://github.com/jameslam-stack/data-cleaning-pipeline/issues"
+
+# Note: This package is NOT published to PyPI.
+# Install from GitHub:  git clone <repo> && pip install -e .
 
 [tool.setuptools.packages.find]
 where = ["."]
