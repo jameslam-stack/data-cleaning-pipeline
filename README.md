@@ -1,0 +1,111 @@
+# Data Cleaning Pipeline Generator
+
+A comprehensive data cleaning pipeline generator for pandas, Polars, and PySpark with best practices for handling messy data.
+
+## Overview
+
+This repository implements data cleaning and preprocessing pipelines using pandas, polars, or PySpark with handling for:
+- Missing values
+- Duplicate rows
+- Outliers (IQR and Z-score methods)
+- Data type conversions
+- Text normalization
+- Data validation
+- Auto-cleaning functionality
+
+## Installation
+
+```bash
+pip install -e .
+
+# With all optional dependencies
+pip install -e ".[polars,spark,dev]"
+```
+
+## Quick Start
+
+```python
+import pandas as pd
+from data_cleaning_pipeline import DataCleaningPipeline, auto_clean_dataframe
+
+# Load your data
+df = pd.read_csv('your_data.csv')
+
+# Using the pipeline class
+pipeline = DataCleaningPipeline(df)
+cleaned_df = (pipeline
+    .remove_duplicates()
+    .handle_missing_values()
+    .fix_data_types()
+    .remove_outliers()
+    .normalize_text()
+    .get_cleaned_data()
+)
+
+# Or use the quick auto-clean function
+cleaned_df = auto_clean_dataframe(df)
+```
+
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| **Pandas Pipeline** | Full-fluent interface with logging |
+| **Polars Pipeline** | Faster operations for large datasets |
+| **PySpark Pipeline** | Big data support |
+| **Auto Clean** | One-function cleaning with defaults |
+| **Quality Checks** | Comprehensive validation |
+
+## Usage Examples
+
+See the `examples/` directory for complete examples:
+- `pandas_example.py` - Pandas pipeline demo
+- `polars_example.py` - Polars pipeline demo
+
+## Project Structure
+
+```
+data-cleaning-pipeline/
+├── data_cleaning_pipeline/     # Source package
+│   ├── __init__.py             # Package exports
+│   ├── pandas_pipeline.py      # Pandas implementation
+│   ├── polars_pipeline.py      # Polars implementation
+│   ├── spark_pipeline.py       # PySpark implementation
+│   ├── auto_clean.py           # Auto-cleaning function
+│   └── quality.py              # Data quality checks
+├── tests/                      # Test suite
+├── examples/                   # Example scripts
+├── docs/                       # Documentation
+├── README.md
+├── pyproject.toml
+└── LICENSE
+```
+
+## API Reference
+
+### DataCleaningPipeline (Pandas)
+
+```python
+pipeline = DataCleaningPipeline(df)
+pipeline.remove_duplicates()
+pipeline.handle_missing_values(strategy='auto')
+pipeline.fix_data_types()
+pipeline.remove_outliers(method='iqr', threshold=1.5)
+pipeline.normalize_text()
+pipeline.validate_ranges({'age': (0, 120)})
+cleaned = pipeline.get_cleaned_data()
+```
+
+### auto_clean_dataframe
+
+```python
+cleaned = auto_clean_dataframe(df, config={
+    'remove_duplicates': True,
+    'handle_missing': True,
+    'normalize_text': True,
+})
+```
+
+## License
+
+MIT License - see LICENSE file.
